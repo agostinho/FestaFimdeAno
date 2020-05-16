@@ -6,12 +6,13 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     android:padding="8dp"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <TextView
         android:id="@+id/text_today"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:text="01/01/2019" />
 
@@ -42,6 +43,7 @@
         />
 
     <Button
+        android:id="@+id/buttonConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
