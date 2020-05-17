@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agostinhojr.festafimdeano.Constant.FimDeAnoConstants;
 import com.agostinhojr.festafimdeano.R;
+import com.agostinhojr.festafimdeano.data.SecurityPreferences;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ViewHolder mViewHolder = new ViewHolder();
     private static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    private SecurityPreferences mSecurityPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +32,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mViewHolder.buttonConfirm.setOnClickListener(this);
 
+        this.mSecurityPreferences = new SecurityPreferences(this);
+
         //Datas
         this.mViewHolder.textToday.setText(SIMPLE_DATE_FORMAT.format(Calendar.getInstance().getTime()));
         String daysLeft = String.format("%s %s", String.valueOf(this.getDaysLeft()), getString(R.string.dias));
         this.mViewHolder.TextDaysLeft.setText(daysLeft);
 
+        this.VerifyPresence();
+
     }
 
-    private int getDaysLeft() {
+    private void VerifyPresence() {
+        //não confirmado, sim, não
+        String presence = this.mSecurityPreferences.getStoredString(FimDeAnoConstants.PRESENCE_KEY);
+        if(presence.equals("")) {
+            this.mViewHolder.buttonConfirm.setText(getString(R.string.nao_confirmado));
+        } else if (presence.equals(FimDeAnoConstants.CONFIRMATION_YES)) {
+            this.mViewHolder.buttonConfirm.setText(getString(R.string.sim));
+        } else {
+            this.mViewHolder.buttonConfirm.setText(getString(R.string.nao));
+        }
+    }
+            private int getDaysLeft() {
         //Data de hoje
         Calendar calendarToday = Calendar.getInstance();
         int today = calendarToday.get(Calendar.DAY_OF_YEAR);
