@@ -39,14 +39,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String daysLeft = String.format("%s %s", String.valueOf(this.getDaysLeft()), getString(R.string.dias));
         this.mViewHolder.TextDaysLeft.setText(daysLeft);
 
-        this.VerifyPresence();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.VerifyPresence();
     }
 
     private void VerifyPresence() {
         //não confirmado, sim, não
         String presence = this.mSecurityPreferences.getStoredString(FimDeAnoConstants.PRESENCE_KEY);
-        if(presence.equals("")) {
+        if (presence.equals("")) {
             this.mViewHolder.buttonConfirm.setText(getString(R.string.nao_confirmado));
         } else if (presence.equals(FimDeAnoConstants.CONFIRMATION_YES)) {
             this.mViewHolder.buttonConfirm.setText(getString(R.string.sim));
@@ -54,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.mViewHolder.buttonConfirm.setText(getString(R.string.nao));
         }
     }
-            private int getDaysLeft() {
+
+    private int getDaysLeft() {
         //Data de hoje
         Calendar calendarToday = Calendar.getInstance();
         int today = calendarToday.get(Calendar.DAY_OF_YEAR);
@@ -70,7 +75,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.buttonConfirm) {
+            String presence = this.mSecurityPreferences.getStoredString(FimDeAnoConstants.PRESENCE_KEY);
+
             Intent intent = new Intent(this, DetailsActivity.class);
+            intent.putExtra(FimDeAnoConstants.PRESENCE_KEY, presence);
             startActivity(intent);
         }
     }
