@@ -54,5 +54,5 @@
         android:text="SIM/NÃO/NÃO CONFIRMADO"
         android:textColor="@color/colorTextWhite"
         android:textSize="18sp" />
-
+ 
 </RelativeLayout>
