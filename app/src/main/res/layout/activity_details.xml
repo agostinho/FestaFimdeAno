@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text="@string/voc_vai_participar"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp" />
+        android:textSize="28dp" />
 
     <View
         android:layout_width="match_parent"
@@ -26,7 +26,8 @@
         android:id="@+id/check_participate"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_gravity="center"
-        android:text="@string/voc_vai_participar"/>
+        android:layout_weight="1"
+        android:text="@string/voc_vai_participar"
+        android:textSize="28dp" />
 </LinearLayout>
