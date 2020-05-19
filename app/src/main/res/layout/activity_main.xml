@@ -44,6 +44,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="40sp" />
 
+
     <Button
         android:id="@+id/buttonConfirm"
         android:layout_width="match_parent"
@@ -54,5 +55,6 @@
         android:text="SIM/NÃO/NÃO CONFIRMADO"
         android:textColor="@color/colorTextWhite"
         android:textSize="18sp" />
- 
+
+
 </RelativeLayout>

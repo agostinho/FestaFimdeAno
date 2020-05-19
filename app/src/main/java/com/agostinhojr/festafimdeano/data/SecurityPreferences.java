@@ -19,6 +19,6 @@ public class SecurityPreferences {
     }
 
     public String getStoredString(String key) {
-       return this.mSharedPreferences.getString(key,"");
+        return this.mSharedPreferences.getString(key, "");
     }
 }
